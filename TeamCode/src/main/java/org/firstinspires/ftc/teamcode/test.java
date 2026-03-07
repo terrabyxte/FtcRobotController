@@ -41,6 +41,17 @@ public class test extends LinearOpMode {
             // - This uses basic math to combine motions and is easier to drive straight.
             double turn  =  gamepad1.right_stick_x;
             turn    = Range.clip(turn, -1.0, 1.0) ;
+            double rsx = gamepad1.right_stick_x;
+            rsx    = Range.clip(rsx, -1.0, 1.0) ;
+            double rsy = -gamepad1.right_stick_y;
+            rsy    = Range.clip(rsy, -1.0, 1.0) ;
+            double angle = Math.atan2(rsy, rsx)*180/(Math.PI);
+            telemetry.addData("RSX", rsx);
+            telemetry.addData("RSY", rsy);
+            telemetry.addData("Controller Angle", angle);
+            double power = Math.sqrt((Math.pow(rsx, 2)+Math.pow(rsy,2)));
+            power = Range.clip(power, -1, 1);
+            telemetry.addData("Controller Power", power);
 
 
             // Tank Mode uses one stick to control each wheel.
